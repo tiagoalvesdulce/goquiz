@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"encoding/csv"
 	"flag"
 	"fmt"
@@ -29,7 +28,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error openning quiz file. Err: %s", err)
 	}
-	reader := csv.NewReader(bufio.NewReader(quizFile))
+	reader := csv.NewReader(quizFile)
 
 	go countTime(*limit, done)
 	lines, err := reader.ReadAll()

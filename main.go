@@ -23,7 +23,7 @@ func main() {
 	var rightAnswers int
 	var done = make(chan bool, 1)
 
-	fmt.Println("... Loading quiz: ", *quizFilename)
+	fmt.Println("---> Loading quiz: ", *quizFilename)
 	quizFile, err := os.Open(*quizFilename)
 	if err != nil {
 		log.Fatalf("Error openning quiz file. Err: %s", err)
@@ -55,7 +55,8 @@ func main() {
 				rightAnswers++
 			}
 		}
+		done <- true
 	}()
 	<-done
-	fmt.Printf("\nYou got %d/%d\n", rightAnswers, len(lines))
+	fmt.Printf("\nYou got %d/%d!\n", rightAnswers, len(lines))
 }

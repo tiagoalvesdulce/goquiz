@@ -8,6 +8,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -29,7 +30,7 @@ func main() {
 			log.Fatalf("Could not read. Err: %s", err)
 		}
 		question := line[0]
-		answer := line[1]
+		answer := strings.Trim(strings.ToLower(line[1]), " ")
 
 		var userAnswer string
 		fmt.Printf("%s = ", question)
@@ -37,6 +38,8 @@ func main() {
 		if err != nil {
 			log.Fatalf("Error getting answer from user. Err: %s", err)
 		}
+
+		userAnswer = strings.Trim(strings.ToLower(userAnswer), " ")
 
 		if userAnswer == answer {
 			rightAnswers++
